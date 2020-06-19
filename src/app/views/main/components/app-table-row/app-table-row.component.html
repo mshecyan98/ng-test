@@ -1,0 +1,12 @@
+<td>{{tableRowData.id}}</td>
+<td *ngIf="allowEdit; else notEditable"><input  app-alphabet-only [formControl]="nameControl" (blur)="onSubmit()" (keyup.enter)="onSubmit()" ></td>
+<td >{{tableRowData.color}}</td>
+<td class="actions"> 
+    <div class="d-flex actions-container">
+        <button (click)="toggleAllowEdit()"><i class="material-icons">edit</i></button>
+        <button (click)="deleteRow()"><i class="material-icons">delete</i></button>
+    </div>
+</td>
+<ng-template #notEditable>
+    <td>{{nameCtrlValue}}</td>
+</ng-template>
