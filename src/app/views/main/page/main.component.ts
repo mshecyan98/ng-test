@@ -17,7 +17,6 @@ import { Subject, Subscription } from "rxjs";
   styleUrls: ["./main.component.scss"]
 })
 export class MainViewComponent implements OnInit, OnDestroy {
-  private _tableDataSubscription: Subscription = new Subscription();
   private _unsubscribe$: Subject<void> = new Subject<void>();
 
   public dataForm: FormArray;
@@ -38,14 +37,14 @@ export class MainViewComponent implements OnInit, OnDestroy {
   }
 
   private _initState(): void {
-    this._tableDataSubscription = this._store.pipe(
+    this._store.pipe(
       select(selectFeatureTableData),
       takeUntil(this._unsubscribe$),
       first()
     ).subscribe((data) => {
       this.dataSource = data;
+      console.log("asdas")
       this._setFormArrayControls();
-      this._tableDataSubscription.unsubscribe();
     });
   }
 
